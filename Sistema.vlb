@@ -1,0 +1,17 @@
+﻿[Panel1]
+Coordinates=10,10,55,58
+Visible=True
+ExplicitSubNodes=
+
+[Panel2]
+Coordinates=80,10,55,58
+
+[DBGrid1]
+Coordinates=10,78,64,36
+
+[SpeedButton1]
+Coordinates=140,10,96,36
+
+[]
+Coordinates=148,1,91,36
+
