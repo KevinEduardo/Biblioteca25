@@ -4,10 +4,10 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons;
 
 type
-  TForm5 = class(TForm)
+  TFormNAluno = class(TForm)
     Edit1: TEdit;
     Edit2: TEdit;
     RadioGroup1: TRadioGroup;
@@ -15,6 +15,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    SpeedButton1: TSpeedButton;
   private
     { Private declarations }
   public
@@ -22,7 +23,7 @@ type
   end;
 
 var
-  Form5: TForm5;
+  FormNAluno: TFormNAluno;
 
 implementation
 

@@ -2,7 +2,7 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'Biblioteca - Sistema'
-  ClientHeight = 410
+  ClientHeight = 414
   ClientWidth = 619
   Color = clWhite
   Constraints.MinHeight = 449
@@ -15,6 +15,7 @@ object Form2: TForm2
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Panel2: TPanel
@@ -22,7 +23,7 @@ object Form2: TForm2
     Left = 3
     Top = 60
     Width = 613
-    Height = 347
+    Height = 351
     Align = alClient
     TabOrder = 1
     object DBGrid1: TDBGrid
@@ -30,14 +31,50 @@ object Form2: TForm2
       Left = 4
       Top = 4
       Width = 605
-      Height = 339
+      Height = 343
       Align = alClient
+      DataSource = DataSource1
+      Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgCancelOnExit]
+      ReadOnly = True
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'livro'
+          Title.Alignment = taCenter
+          Title.Caption = 'Livro'
+          Width = 150
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'aluno'
+          Title.Alignment = taCenter
+          Title.Caption = 'Aluno'
+          Width = 215
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'data'
+          Title.Alignment = taCenter
+          Title.Caption = 'Data de Retirada'
+          Width = 100
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'datadev'
+          Title.Alignment = taCenter
+          Title.Caption = 'Data de Devolu'#231#227'o'
+          Width = 100
+          Visible = True
+        end>
     end
   end
   object Panel1: TPanel
@@ -90,6 +127,7 @@ object Form2: TForm2
         0333337F3F7F33337F333301E10BBBBB0333337F7F7F33337F333301EE0BBBBB
         0333337F777FFFFF7F3333000000000003333377777777777333}
       NumGlyphs = 2
+      OnClick = SpeedButton2Click
     end
     object SpeedButton3: TSpeedButton
       Left = 245
@@ -135,5 +173,77 @@ object Form2: TForm2
       Caption = 'Config'
       OnClick = SpeedButton6Click
     end
+  end
+  object DataSource1: TDataSource
+    DataSet = FDTable1
+    Left = 563
+    Top = 140
+  end
+  object FDTable1: TFDTable
+    Active = True
+    IndexFieldNames = 'id'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'retiradas'
+    TableName = 'retiradas'
+    Left = 499
+    Top = 148
+    object FDTable1id: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object FDTable1aluno: TWideMemoField
+      FieldName = 'aluno'
+      Origin = 'aluno'
+      Required = True
+      OnGetText = FDTable1alunoGetText
+      BlobType = ftWideMemo
+    end
+    object FDTable1usuario: TWideMemoField
+      FieldName = 'usuario'
+      Origin = 'usuario'
+      Required = True
+      BlobType = ftWideMemo
+    end
+    object FDTable1livro: TWideMemoField
+      FieldName = 'livro'
+      Origin = 'livro'
+      OnGetText = FDTable1livroGetText
+      BlobType = ftWideMemo
+    end
+    object FDTable1data: TWideMemoField
+      FieldName = 'data'
+      Origin = 'data'
+      OnGetText = FDTable1dataGetText
+      BlobType = ftWideMemo
+    end
+    object FDTable1datadev: TWideMemoField
+      FieldName = 'datadev'
+      Origin = 'datadev'
+      OnGetText = FDTable1datadevGetText
+      BlobType = ftWideMemo
+    end
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'LockingMode=Normal'
+      'ConnectionDef=Biblioteca_SQLite')
+    Connected = True
+    Left = 419
+    Top = 132
+  end
+  object FDQuery1: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'Select nome from usuarios')
+    Left = 331
+    Top = 188
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 459
+    Top = 308
   end
 end

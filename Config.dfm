@@ -26,6 +26,8 @@ object Form5: TForm5
     ExplicitHeight = 322
     object TabSheet1: TTabSheet
       Caption = 'Bibliotec'#225'rio (a)'
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 281
       ExplicitHeight = 164
       object DBGrid1: TDBGrid
@@ -80,12 +82,16 @@ object Form5: TForm5
     object TabSheet2: TTabSheet
       Caption = 'Categorias de Livros'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 281
       ExplicitHeight = 164
     end
     object TabSheet3: TTabSheet
       Caption = 'Classifica'#231#227'o de Livros'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 281
       ExplicitHeight = 164
     end
@@ -109,6 +115,7 @@ object Form5: TForm5
       FieldName = 'id'
       Origin = 'id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object FDTable1nome: TWideMemoField
       FieldName = 'nome'
