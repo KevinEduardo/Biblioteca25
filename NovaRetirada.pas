@@ -133,7 +133,7 @@ FDQuery1.Open;
 FDQuery1.Append;
 FDQuery1.FieldByName('aluno').AsString := IDAluno.Text;
 FDQuery1.FieldByName('usuario').AsString := UserLogado;
-FDQuery1.FieldByName('livro').AsString := '1';
+FDQuery1.FieldByName('livro').AsString := IDLivro.Text;
 FDQuery1.FieldByName('data').AsString := DateToStr(Now);
 FDQuery1.FieldByName('datadev').AsString := DateToStr(DateTimePicker1.Date);
 FDQuery1.Post;

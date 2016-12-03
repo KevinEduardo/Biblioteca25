@@ -450,6 +450,7 @@ object Form3: TForm3
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
+      'LockingMode=Normal'
       'ConnectionDef=Biblioteca_SQLite')
     Connected = True
     Left = 96
@@ -510,6 +511,7 @@ object Form3: TForm3
     Top = 8
   end
   object FDQuery1: TFDQuery
+    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       'select * from retiradas')
