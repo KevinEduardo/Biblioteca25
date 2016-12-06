@@ -1,12 +1,14 @@
 object Form2: TForm2
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Biblioteca - Sistema'
   ClientHeight = 414
-  ClientWidth = 619
+  ClientWidth = 614
   Color = clWhite
+  Constraints.MaxWidth = 630
   Constraints.MinHeight = 449
-  Constraints.MinWidth = 635
+  Constraints.MinWidth = 630
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -22,19 +24,21 @@ object Form2: TForm2
     AlignWithMargins = True
     Left = 3
     Top = 60
-    Width = 613
+    Width = 608
     Height = 351
     Align = alClient
     TabOrder = 1
+    ExplicitWidth = 613
     object DBGrid1: TDBGrid
       AlignWithMargins = True
       Left = 4
       Top = 4
-      Width = 605
+      Width = 600
       Height = 343
       Align = alClient
       DataSource = DataSource1
       Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgCancelOnExit]
+      PopupMenu = PopupMenu1
       ReadOnly = True
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -80,11 +84,12 @@ object Form2: TForm2
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 619
+    Width = 614
     Height = 57
     Align = alTop
     Locked = True
     TabOrder = 0
+    ExplicitWidth = 619
     object SpeedButton1: TSpeedButton
       Left = 7
       Top = 5
@@ -245,5 +250,18 @@ object Form2: TForm2
     OnTimer = Timer1Timer
     Left = 459
     Top = 308
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 323
+    Top = 116
+    object Editar1: TMenuItem
+      Caption = 'Editar'
+      Default = True
+      OnClick = Editar1Click
+    end
+    object Deletar1: TMenuItem
+      Caption = 'Deletar'
+      OnClick = Deletar1Click
+    end
   end
 end

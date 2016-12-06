@@ -11,7 +11,7 @@ uses
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.UI.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Phys, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef,
   FireDAC.Stan.ExprFuncs, FireDAC.VCLUI.Wait, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client, Vcl.Menus, EditarRetirada;
 
 type
   TForm2 = class(TForm)
@@ -35,6 +35,9 @@ type
     FDTable1datadev: TWideMemoField;
     FDQuery1: TFDQuery;
     Timer1: TTimer;
+    PopupMenu1: TPopupMenu;
+    Editar1: TMenuItem;
+    Deletar1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
@@ -50,6 +53,8 @@ type
       DisplayText: Boolean);
     procedure Timer1Timer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Deletar1Click(Sender: TObject);
+    procedure Editar1Click(Sender: TObject);
   protected
     procedure CreateParams(var Params: TCreateParams) ; override;
   private
@@ -70,6 +75,21 @@ begin
 inherited;
 Params.ExStyle := Params.ExStyle or WS_EX_APPWINDOW;
 Params.WndParent := GetDesktopWindow;
+end;
+
+procedure TForm2.Deletar1Click(Sender: TObject);
+begin
+DBGrid1.DataSource.DataSet.Delete();
+end;
+
+procedure TForm2.Editar1Click(Sender: TObject);
+begin
+with TForm7.Create(nil) do
+    try
+      ShowModal;
+    finally
+      Free;
+    end;
 end;
 
 procedure TForm2.FDTable1alunoGetText(Sender: TField; var Text: string;

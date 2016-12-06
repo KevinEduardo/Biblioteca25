@@ -13,6 +13,7 @@ object Form3: TForm3
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 106
   TextHeight = 14
   object Label1: TLabel

@@ -48,6 +48,7 @@ type
     procedure SpeedButton1Click(Sender: TObject);
     procedure FDTable2tituloGetText(Sender: TField; var Text: string;
       DisplayText: Boolean);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -127,7 +128,27 @@ begin
 Text := Copy(FDTable2titulo.AsString, 1, 50);
 end;
 
+procedure TForm3.FormCreate(Sender: TObject);
+begin
+DateTimePicker1.Date := Now();
+end;
+
 procedure TForm3.SpeedButton1Click(Sender: TObject);
+var
+podse : integer;
+begin
+podse := 0;
+if Trim(Edit1.Text) = '' then
+Mensagem('Nome do Aluno não preenchido!')
+else
+podse := podse + 1;
+
+if Trim(Edit2.Text) = '' then
+Mensagem('Nome do Livro não preenchido!')
+else
+podse := podse + 1;
+
+if podse = 2 then
 begin
 FDQuery1.Open;
 FDQuery1.Append;
@@ -138,6 +159,8 @@ FDQuery1.FieldByName('data').AsString := DateToStr(Now);
 FDQuery1.FieldByName('datadev').AsString := DateToStr(DateTimePicker1.Date);
 FDQuery1.Post;
 Mensagem('Registrado com sucessso!');
+end;
+
 end;
 
 end.

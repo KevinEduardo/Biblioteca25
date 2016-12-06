@@ -64,6 +64,7 @@ object Form1: TForm1
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
+      'LockingMode=Normal'
       'ConnectionDef=Biblioteca_SQLite')
     Connected = True
     Left = 16
