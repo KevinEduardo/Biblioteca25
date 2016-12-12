@@ -13,6 +13,7 @@ object Form4: TForm4
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   PixelsPerInch = 106
   TextHeight = 14
   object SpeedButton1: TSpeedButton
@@ -180,6 +181,7 @@ object Form4: TForm4
       FieldName = 'id'
       Origin = 'id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object FDQuery1titulo: TWideMemoField
       FieldName = 'titulo'

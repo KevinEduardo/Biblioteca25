@@ -11,6 +11,7 @@ object FormNAluno: TFormNAluno
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -139,6 +140,7 @@ object FormNAluno: TFormNAluno
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+    OnClick = SpeedButton1Click
   end
   object Edit1: TEdit
     Left = 80
@@ -172,5 +174,21 @@ object FormNAluno: TFormNAluno
     Width = 121
     Height = 21
     TabOrder = 3
+  end
+  object FDQuery1: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from alunos;')
+    Left = 360
+    Top = 160
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'LockingMode=Normal'
+      'ConnectionDef=Biblioteca_SQLite')
+    Connected = True
+    Left = 424
+    Top = 168
   end
 end

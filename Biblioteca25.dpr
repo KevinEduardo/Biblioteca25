@@ -9,7 +9,8 @@ uses
   NovoLivro in 'NovoLivro.pas' {Form4},
   NovoAluno in 'NovoAluno.pas' {FormNAluno},
   Bibliotecario in 'Bibliotecario.pas' {Form6},
-  Config in 'Config.pas' {Form5};
+  Config in 'Config.pas' {Form5},
+  EditarRetirada in 'EditarRetirada.pas' {Form7};
 
 {$R *.res}
 
@@ -23,5 +24,6 @@ begin
   Application.CreateForm(TFormNAluno, FormNAluno);
   Application.CreateForm(TForm6, Form6);
   Application.CreateForm(TForm5, Form5);
+  Application.CreateForm(TForm7, Form7);
   Application.Run;
 end.

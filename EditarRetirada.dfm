@@ -4,8 +4,8 @@ object Form7: TForm7
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Biblioteca - Editar Retirada'
-  ClientHeight = 255
-  ClientWidth = 234
+  ClientHeight = 314
+  ClientWidth = 305
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,7 +13,8 @@ object Form7: TForm7
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnCreate = FormCreate
+  Position = poScreenCenter
+  OnActivate = FormActivate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -31,15 +32,15 @@ object Form7: TForm7
     Caption = 'Nome do Livro:'
   end
   object Label3: TLabel
-    Left = 32
+    Left = 31
     Top = 144
     Width = 95
     Height = 13
     Caption = 'Data de Devolu'#231#227'o:'
   end
   object SpeedButton1: TSpeedButton
-    Left = 65
-    Top = 200
+    Left = 97
+    Top = 259
     Width = 96
     Height = 47
     Caption = 'Editar'
@@ -335,30 +336,286 @@ object Form7: TForm7
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
+    OnClick = SpeedButton1Click
   end
-  object Edit1: TEdit
+  object Label4: TLabel
     Left = 32
-    Top = 43
-    Width = 177
-    Height = 21
-    ReadOnly = True
-    TabOrder = 0
-  end
-  object Edit2: TEdit
-    Left = 32
-    Top = 99
-    Width = 177
-    Height = 21
-    ReadOnly = True
-    TabOrder = 1
+    Top = 192
+    Width = 86
+    Height = 13
+    Caption = 'Data de Retirada:'
   end
   object DateTimePicker1: TDateTimePicker
-    Left = 32
+    Left = 30
     Top = 163
-    Width = 177
+    Width = 239
     Height = 21
     Date = 42710.009820613430000000
     Time = 42710.009820613430000000
+    TabOrder = 0
+  end
+  object Panel1: TPanel
+    Left = 30
+    Top = 40
+    Width = 239
+    Height = 24
+    Caption = 'Panel1'
+    TabOrder = 1
+    object DBLookupComboBox1: TDBLookupComboBox
+      Left = 1
+      Top = 1
+      Width = 237
+      Height = 21
+      Align = alClient
+      KeyField = 'id'
+      ListField = 'nome'
+      ListSource = DataSource1
+      TabOrder = 0
+      OnClick = DBLookupComboBox1Click
+    end
+    object Edit1: TEdit
+      Left = 1
+      Top = 1
+      Width = 237
+      Height = 22
+      Align = alClient
+      TabOrder = 1
+      OnChange = Edit1Change
+      ExplicitHeight = 21
+    end
+  end
+  object Panel2: TPanel
+    Left = 30
+    Top = 100
+    Width = 239
+    Height = 24
+    Caption = 'Panel2'
     TabOrder = 2
+    object DBLookupComboBox2: TDBLookupComboBox
+      Left = 1
+      Top = 1
+      Width = 237
+      Height = 21
+      Align = alClient
+      KeyField = 'id'
+      ListField = 'titulo'
+      ListSource = DataSource2
+      TabOrder = 0
+      OnClick = DBLookupComboBox2Click
+    end
+    object Edit2: TEdit
+      Left = 1
+      Top = 1
+      Width = 237
+      Height = 22
+      Align = alClient
+      TabOrder = 1
+      OnChange = Edit2Change
+      ExplicitHeight = 21
+    end
+  end
+  object IDAluno: TDBEdit
+    Left = 275
+    Top = 41
+    Width = 25
+    Height = 21
+    DataField = 'id'
+    DataSource = DataSource1
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 3
+    Visible = False
+  end
+  object IDLivro: TDBEdit
+    Left = 275
+    Top = 101
+    Width = 25
+    Height = 21
+    DataField = 'id'
+    DataSource = DataSource2
+    TabOrder = 4
+    Visible = False
+  end
+  object DateTimePicker2: TDateTimePicker
+    Left = 30
+    Top = 211
+    Width = 239
+    Height = 21
+    Date = 42716.618076828700000000
+    Time = 42716.618076828700000000
+    TabOrder = 5
+  end
+  object FDQuery1: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from retiradas;')
+    Left = 240
+    Top = 8
+    object FDQuery1id: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object FDQuery1aluno: TWideMemoField
+      FieldName = 'aluno'
+      Origin = 'aluno'
+      Required = True
+      BlobType = ftWideMemo
+    end
+    object FDQuery1usuario: TWideMemoField
+      FieldName = 'usuario'
+      Origin = 'usuario'
+      Required = True
+      BlobType = ftWideMemo
+    end
+    object FDQuery1livro: TWideMemoField
+      FieldName = 'livro'
+      Origin = 'livro'
+      BlobType = ftWideMemo
+    end
+    object FDQuery1data: TWideMemoField
+      FieldName = 'data'
+      Origin = 'data'
+      BlobType = ftWideMemo
+    end
+    object FDQuery1datadev: TWideMemoField
+      FieldName = 'datadev'
+      Origin = 'datadev'
+      BlobType = ftWideMemo
+    end
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'LockingMode=Normal'
+      'ConnectionDef=Biblioteca_SQLite')
+    Connected = True
+    Left = 200
+    Top = 8
+  end
+  object FDTable1: TFDTable
+    Active = True
+    IndexFieldNames = 'id'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'alunos'
+    TableName = 'alunos'
+    Left = 72
+    object FDTable1id: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object FDTable1nome: TWideMemoField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Required = True
+      OnGetText = FDTable1nomeGetText
+      BlobType = ftWideMemo
+    end
+    object FDTable1turma: TWideMemoField
+      FieldName = 'turma'
+      Origin = 'turma'
+      Required = True
+      BlobType = ftWideMemo
+    end
+    object FDTable1turno: TWideMemoField
+      FieldName = 'turno'
+      Origin = 'turno'
+      Required = True
+      BlobType = ftWideMemo
+    end
+    object FDTable1telefone: TWideMemoField
+      FieldName = 'telefone'
+      Origin = 'telefone'
+      Required = True
+      BlobType = ftWideMemo
+    end
+    object FDTable1data: TWideMemoField
+      FieldName = 'data'
+      Origin = 'data'
+      BlobType = ftWideMemo
+    end
+  end
+  object FDTable2: TFDTable
+    Active = True
+    IndexFieldNames = 'id'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'livros'
+    TableName = 'livros'
+    Left = 104
+    Top = 8
+    object FDTable2id: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object FDTable2titulo: TWideMemoField
+      FieldName = 'titulo'
+      Origin = 'titulo'
+      Required = True
+      OnGetText = FDTable2tituloGetText
+      BlobType = ftWideMemo
+    end
+    object FDTable2autor: TWideMemoField
+      FieldName = 'autor'
+      Origin = 'autor'
+      Required = True
+      BlobType = ftWideMemo
+    end
+    object FDTable2grafica: TWideMemoField
+      FieldName = 'grafica'
+      Origin = 'grafica'
+      BlobType = ftWideMemo
+    end
+    object FDTable2ano_publicado: TWideMemoField
+      FieldName = 'ano_publicado'
+      Origin = 'ano_publicado'
+      BlobType = ftWideMemo
+    end
+    object FDTable2n_acervo: TIntegerField
+      FieldName = 'n_acervo'
+      Origin = 'n_acervo'
+    end
+    object FDTable2n_registro: TIntegerField
+      FieldName = 'n_registro'
+      Origin = 'n_registro'
+    end
+    object FDTable2data_reg: TWideMemoField
+      FieldName = 'data_reg'
+      Origin = 'data_reg'
+      BlobType = ftWideMemo
+    end
+    object FDTable2n_paginas: TIntegerField
+      FieldName = 'n_paginas'
+      Origin = 'n_paginas'
+    end
+    object FDTable2classificacao: TWideMemoField
+      FieldName = 'classificacao'
+      Origin = 'classificacao'
+      BlobType = ftWideMemo
+    end
+    object FDTable2origem: TWideMemoField
+      FieldName = 'origem'
+      Origin = 'origem'
+      BlobType = ftWideMemo
+    end
+    object FDTable2categoria: TWideMemoField
+      FieldName = 'categoria'
+      Origin = 'categoria'
+      BlobType = ftWideMemo
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = FDTable1
+    Left = 168
+    Top = 8
+  end
+  object DataSource2: TDataSource
+    DataSet = FDTable2
+    Left = 136
+    Top = 8
   end
 end

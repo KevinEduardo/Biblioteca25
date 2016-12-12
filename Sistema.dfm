@@ -28,7 +28,6 @@ object Form2: TForm2
     Height = 351
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 613
     object DBGrid1: TDBGrid
       AlignWithMargins = True
       Left = 4
@@ -89,7 +88,6 @@ object Form2: TForm2
     Align = alTop
     Locked = True
     TabOrder = 0
-    ExplicitWidth = 619
     object SpeedButton1: TSpeedButton
       Left = 7
       Top = 5
@@ -181,8 +179,8 @@ object Form2: TForm2
   end
   object DataSource1: TDataSource
     DataSet = FDTable1
-    Left = 563
-    Top = 140
+    Left = 459
+    Top = 252
   end
   object FDTable1: TFDTable
     Active = True
@@ -262,6 +260,10 @@ object Form2: TForm2
     object Deletar1: TMenuItem
       Caption = 'Deletar'
       OnClick = Deletar1Click
+    end
+    object Atualizar1: TMenuItem
+      Caption = 'Atualizar'
+      OnClick = Atualizar1Click
     end
   end
 end

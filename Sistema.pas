@@ -11,7 +11,7 @@ uses
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.UI.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Phys, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef,
   FireDAC.Stan.ExprFuncs, FireDAC.VCLUI.Wait, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.Menus, EditarRetirada;
+  FireDAC.Comp.Client, Vcl.Menus, EditarRetirada, Global;
 
 type
   TForm2 = class(TForm)
@@ -38,6 +38,7 @@ type
     PopupMenu1: TPopupMenu;
     Editar1: TMenuItem;
     Deletar1: TMenuItem;
+    Atualizar1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
@@ -55,6 +56,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Deletar1Click(Sender: TObject);
     procedure Editar1Click(Sender: TObject);
+    procedure Atualizar1Click(Sender: TObject);
   protected
     procedure CreateParams(var Params: TCreateParams) ; override;
   private
@@ -70,6 +72,12 @@ implementation
 
 {$R *.dfm}
 
+procedure TForm2.Atualizar1Click(Sender: TObject);
+begin
+FDTable1.Refresh();
+DBGrid1.Refresh();
+end;
+
 procedure TForm2.CreateParams(var Params: TCreateParams) ;
 begin
 inherited;
@@ -84,6 +92,8 @@ end;
 
 procedure TForm2.Editar1Click(Sender: TObject);
 begin
+EditandoR := DBGrid1.DataSource.DataSet.FieldByName('id').Value;
+//ShowMessage('ID DO SELECIONADO: ' + EditandoR.ToString);
 with TForm7.Create(nil) do
     try
       ShowModal;
