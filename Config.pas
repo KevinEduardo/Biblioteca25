@@ -10,14 +10,11 @@ uses
   FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs, FireDAC.VCLUI.Wait,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
   Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.ComCtrls, Vcl.Grids, Vcl.DBGrids, Global, Bibliotecario;
+  FireDAC.Comp.Client, Vcl.ComCtrls, Vcl.Grids, Vcl.DBGrids, Global, Bibliotecario,
+  Vcl.Menus, NovoUsuario, Vcl.ExtCtrls;
 
 type
   TForm5 = class(TForm)
-    PageControl1: TPageControl;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
-    TabSheet3: TTabSheet;
     FDConnection1: TFDConnection;
     FDTable1: TFDTable;
     DataSource1: TDataSource;
@@ -29,14 +26,23 @@ type
     FDTable1data_reg: TWideMemoField;
     FDTable1data_ua: TWideMemoField;
     DBGrid1: TDBGrid;
-    Button1: TButton;
-    Button3: TButton;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    PopupMenu1: TPopupMenu;
+    Deletar1: TMenuItem;
+    Novo1: TMenuItem;
+    Timer1: TTimer;
     procedure FDTable1nomeGetText(Sender: TField; var Text: string;
       DisplayText: Boolean);
     procedure FDTable1usernameGetText(Sender: TField; var Text: string;
       DisplayText: Boolean);
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure FDTable1cargoGetText(Sender: TField; var Text: string;
+      DisplayText: Boolean);
+    procedure Novo1Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure Deletar1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -49,6 +55,17 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Mensagem(Msg: String);
+begin
+  with CreateMessageDialog(Msg, mtInformation, [mbOk]) do
+  try
+    Caption := 'Biblioteca - Informação';
+    ShowModal;
+  finally
+    Free
+  end;
+end;
 
 procedure TForm5.Button1Click(Sender: TObject);
 begin
@@ -72,6 +89,26 @@ with TForm6.Create(nil) do
     end;
 end;
 
+procedure TForm5.Deletar1Click(Sender: TObject);
+begin
+if DBGrid1.DataSource.DataSet.FieldByName('cargo').AsString = '4' then
+begin
+Mensagem('Não é possível deletar o desenvolvedor! :S');
+end else
+DBGrid1.DataSource.DataSet.Delete;
+end;
+
+procedure TForm5.FDTable1cargoGetText(Sender: TField; var Text: string;
+  DisplayText: Boolean);
+begin
+if FDTable1cargo.AsString = '1' then
+Text := 'Bibliotecário (a)';
+if FDTable1cargo.AsString = '2' then
+Text := 'Coordenação';
+if FDTable1cargo.AsString = '4' then
+Text := 'Desenvolvedor';
+end;
+
 procedure TForm5.FDTable1nomeGetText(Sender: TField; var Text: string;
   DisplayText: Boolean);
 begin
@@ -82,6 +119,21 @@ procedure TForm5.FDTable1usernameGetText(Sender: TField; var Text: string;
   DisplayText: Boolean);
 begin
 Text := Copy(FDTable1username.AsString, 1, 50);
+end;
+
+procedure TForm5.Novo1Click(Sender: TObject);
+begin
+with TForm8.Create(nil) do
+    try
+      ShowModal;
+    finally
+      Free;
+    end;
+end;
+
+procedure TForm5.Timer1Timer(Sender: TObject);
+begin
+FDTable1.Refresh();
 end;
 
 end.

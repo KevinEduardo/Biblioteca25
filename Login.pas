@@ -22,6 +22,9 @@ type
     Label1: TLabel;
     Label2: TLabel;
     procedure Button1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure Edit2KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -34,6 +37,17 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Mensagem(Msg: String);
+begin
+  with CreateMessageDialog(Msg, mtInformation, [mbOk]) do
+  try
+    Caption := 'Biblioteca - Informação';
+    ShowModal;
+  finally
+    Free
+  end;
+end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
@@ -63,7 +77,9 @@ end else
 if (user = true) And (senha = true) then
 begin
   UserLogado := Edit1.Text;
+  UserCargo := FDQuery1.FieldByName('cargo').AsString;
   Form1.Hide;
+  FDQuery1.Free;
   with TForm2.Create(nil) do
     try
       ShowModal;
@@ -71,7 +87,26 @@ begin
       Free;
     end;
 end else
-  ShowMessage('Login incorreto');
+  Mensagem('Login incorreto');
+end;
+
+procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
+begin
+if Key = #13 then begin
+     Edit2.SetFocus;
+   end;
+end;
+
+procedure TForm1.Edit2KeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #13 then begin
+     Button1.Click;
+   end;
+end;
+
+procedure TForm1.FormActivate(Sender: TObject);
+begin
+Edit1.SetFocus;
 end;
 
 end.

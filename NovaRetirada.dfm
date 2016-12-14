@@ -5,7 +5,7 @@ object Form3: TForm3
   BorderStyle = bsSingle
   Caption = 'Biblioteca - Nova Retirada'
   ClientHeight = 250
-  ClientWidth = 347
+  ClientWidth = 356
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -39,6 +39,7 @@ object Form3: TForm3
     Caption = 'Data de Devolu'#231#227'o:'
   end
   object Panel4: TPanel
+    AlignWithMargins = True
     Left = 5
     Top = 127
     Width = 340
@@ -347,6 +348,7 @@ object Form3: TForm3
     end
   end
   object Panel3: TPanel
+    AlignWithMargins = True
     Left = 5
     Top = 5
     Width = 340
@@ -375,7 +377,7 @@ object Form3: TForm3
         Left = 1
         Top = 1
         Width = 239
-        Height = 23
+        Height = 24
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
@@ -409,7 +411,7 @@ object Form3: TForm3
         Left = 1
         Top = 1
         Width = 239
-        Height = 23
+        Height = 24
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0

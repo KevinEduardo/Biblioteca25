@@ -50,6 +50,31 @@ begin
 end;
 
 procedure TFormNAluno.SpeedButton1Click(Sender: TObject);
+var
+podse : integer;
+begin
+podse := 0;
+if Trim(Edit1.Text) = '' then
+Mensagem('Nome do Aluno não preenchido!')
+else
+podse := podse + 1;
+
+if Trim(Edit2.Text) = '' then
+Mensagem('Turma do Aluno não preenchido!')
+else
+podse := podse + 1;
+
+if Trim(Edit3.Text) = '' then
+Mensagem('Telefone do Aluno não preenchido!')
+else
+podse := podse + 1;
+
+if RadioGroup1.ItemIndex = -1 then
+Mensagem('Turno do Aluno não preenchido!')
+else
+podse := podse + 1;
+
+if podse = 4 then
 begin
 FDQuery1.Open;
 FDQuery1.Append;
@@ -60,6 +85,8 @@ FDQuery1.FieldByName('telefone').AsString := Edit3.Text;
 FDQuery1.FieldByName('data').AsString := DateToStr(Now);
 FDQuery1.Post;
 Mensagem('Registrado com sucessso!');
+Close;
+end;
 end;
 
 end.

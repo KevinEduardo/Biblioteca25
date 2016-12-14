@@ -75,6 +75,61 @@ begin
 end;
 
 procedure TForm4.SpeedButton1Click(Sender: TObject);
+var
+podse : integer;
+begin
+podse := 0;
+if Trim(Edit1.Text) = '' then
+Mensagem('Título do Livro não preenchido!')
+else
+podse := podse + 1;
+
+if Trim(Edit2.Text) = '' then
+Mensagem('Autor do Livro não preenchido!')
+else
+podse := podse + 1;
+
+if Trim(Edit3.Text) = '' then
+Mensagem('Gráfica do Livro não preenchido!')
+else
+podse := podse + 1;
+
+if Trim(Edit4.Text) = '' then
+Mensagem('Ano de Publicação não preenchido!')
+else
+podse := podse + 1;
+
+if Trim(Edit5.Text) = '' then
+Mensagem('Número do Acervo não preenchido!')
+else
+podse := podse + 1;
+
+if Trim(Edit6.Text) = '' then
+Mensagem('Número do Registro não preenchido!')
+else
+podse := podse + 1;
+
+if Trim(Edit7.Text) = '' then
+Mensagem('Número de Páginas não preenchido!')
+else
+podse := podse + 1;
+
+if Trim(Edit8.Text) = '' then
+Mensagem('Categoria do Livro não preenchido!')
+else
+podse := podse + 1;
+
+if Trim(Edit9.Text) = '' then
+Mensagem('Classificação do Livro não preenchido!')
+else
+podse := podse + 1;
+
+if RadioGroup1.ItemIndex = -1 then
+Mensagem('Origem do Livro não preenchido!')
+else
+podse := podse + 1;
+
+if podse = 10 then
 begin
 FDQuery1.Open;
 FDQuery1.Append;
@@ -90,6 +145,8 @@ FDQuery1.FieldByName('categoria').AsString := Edit8.Text;
 FDQuery1.FieldByName('classificacao').AsString := Edit9.Text;
 FDQuery1.Post;
 Mensagem('Registrado com sucessso!');
+Close;
+end;
 end;
 
 end.

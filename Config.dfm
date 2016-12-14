@@ -1,42 +1,45 @@
 object Form5: TForm5
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Biblioteca - Configura'#231#245'es'
-  ClientHeight = 239
-  ClientWidth = 387
-  Color = clBtnFace
+  ClientHeight = 218
+  ClientWidth = 450
+  Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   PixelsPerInch = 106
   TextHeight = 14
   object PageControl1: TPageControl
-    Left = 0
-    Top = 0
-    Width = 387
-    Height = 239
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 444
+    Height = 212
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 450
-    ExplicitHeight = 322
+    ExplicitWidth = 434
+    ExplicitHeight = 202
     object TabSheet1: TTabSheet
-      Caption = 'Bibliotec'#225'rio (a)'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 281
-      ExplicitHeight = 164
+      Caption = 'Usu'#225'rios'
+      ExplicitWidth = 426
+      ExplicitHeight = 173
       object DBGrid1: TDBGrid
-        Left = 3
-        Top = 3
-        Width = 366
-        Height = 150
+        Left = 0
+        Top = 0
+        Width = 436
+        Height = 183
+        Align = alClient
         DataSource = DataSource1
-        Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgTitleClick, dgTitleHotTrack]
+        PopupMenu = PopupMenu1
         ReadOnly = True
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -49,59 +52,32 @@ object Form5: TForm5
             Expanded = False
             FieldName = 'nome'
             Title.Caption = 'Nome'
-            Width = 204
+            Width = 155
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'username'
             Title.Caption = 'Nome de Usu'#225'rio'
-            Width = 155
+            Width = 112
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cargo'
+            Title.Caption = 'Cargo'
+            Width = 116
             Visible = True
           end>
       end
-      object Button1: TButton
-        Left = 3
-        Top = 159
-        Width = 75
-        Height = 25
-        Caption = 'Novo'
-        TabOrder = 1
-        OnClick = Button1Click
-      end
-      object Button3: TButton
-        Left = 93
-        Top = 159
-        Width = 75
-        Height = 25
-        Caption = 'Editar'
-        TabOrder = 2
-        OnClick = Button3Click
-      end
-    end
-    object TabSheet2: TTabSheet
-      Caption = 'Categorias de Livros'
-      ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 281
-      ExplicitHeight = 164
-    end
-    object TabSheet3: TTabSheet
-      Caption = 'Classifica'#231#227'o de Livros'
-      ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 281
-      ExplicitHeight = 164
     end
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
       'ConnectionDef=Biblioteca_SQLite')
     Connected = True
-    Left = 260
-    Top = 185
+    Left = 156
+    Top = 145
   end
   object FDTable1: TFDTable
     Active = True
@@ -109,8 +85,8 @@ object Form5: TForm5
     Connection = FDConnection1
     UpdateOptions.UpdateTableName = 'usuarios'
     TableName = 'usuarios'
-    Left = 308
-    Top = 185
+    Left = 116
+    Top = 153
     object FDTable1id: TFDAutoIncField
       FieldName = 'id'
       Origin = 'id'
@@ -141,6 +117,7 @@ object Form5: TForm5
       FieldName = 'cargo'
       Origin = 'cargo'
       Required = True
+      OnGetText = FDTable1cargoGetText
       BlobType = ftWideMemo
     end
     object FDTable1data_reg: TWideMemoField
@@ -156,7 +133,25 @@ object Form5: TForm5
   end
   object DataSource1: TDataSource
     DataSet = FDTable1
-    Left = 220
-    Top = 185
+    Left = 212
+    Top = 145
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 303
+    Top = 140
+    object Novo1: TMenuItem
+      Caption = 'Novo'
+      Default = True
+      OnClick = Novo1Click
+    end
+    object Deletar1: TMenuItem
+      Caption = 'Deletar'
+      OnClick = Deletar1Click
+    end
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 375
+    Top = 140
   end
 end

@@ -11,7 +11,7 @@ uses
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.UI.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Phys, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef,
   FireDAC.Stan.ExprFuncs, FireDAC.VCLUI.Wait, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.Menus, EditarRetirada, Global;
+  FireDAC.Comp.Client, Vcl.Menus, EditarRetirada, Global, Inventario, Alunos;
 
 type
   TForm2 = class(TForm)
@@ -57,6 +57,8 @@ type
     procedure Deletar1Click(Sender: TObject);
     procedure Editar1Click(Sender: TObject);
     procedure Atualizar1Click(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
+    procedure SpeedButton5Click(Sender: TObject);
   protected
     procedure CreateParams(var Params: TCreateParams) ; override;
   private
@@ -142,6 +144,8 @@ end;
 procedure TForm2.FormCreate(Sender: TObject);
 begin
 FDManager.ResourceOptions.SilentMode := True;
+if UserCargo = '1' then
+SpeedButton6.Enabled := False;
 end;
 
 procedure TForm2.SpeedButton1Click(Sender: TObject);
@@ -167,6 +171,26 @@ end;
 procedure TForm2.SpeedButton3Click(Sender: TObject);
 begin
 with TForm4.Create(nil) do
+    try
+      ShowModal;
+    finally
+      Free;
+    end;
+end;
+
+procedure TForm2.SpeedButton4Click(Sender: TObject);
+begin
+with TForm9.Create(nil) do
+    try
+      ShowModal;
+    finally
+      Free;
+    end;
+end;
+
+procedure TForm2.SpeedButton5Click(Sender: TObject);
+begin
+with TForm10.Create(nil) do
     try
       ShowModal;
     finally

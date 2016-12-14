@@ -1,11 +1,11 @@
-object FormNAluno: TFormNAluno
+object Form8: TForm8
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'Biblioteca - Novo Aluno'
-  ClientHeight = 236
-  ClientWidth = 474
+  Caption = 'Biblioteca - Novo Usu'#225'rio'
+  ClientHeight = 392
+  ClientWidth = 255
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,33 +14,34 @@ object FormNAluno: TFormNAluno
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 43
-    Top = 43
+    Left = 24
+    Top = 21
     Width = 31
     Height = 13
     Caption = 'Nome:'
   end
   object Label2: TLabel
-    Left = 40
-    Top = 83
-    Width = 34
+    Left = 24
+    Top = 77
+    Width = 85
     Height = 13
-    Caption = 'Turma:'
+    Caption = 'Nome de Usu'#225'rio:'
   end
   object Label3: TLabel
-    Left = 28
-    Top = 127
-    Width = 46
+    Left = 24
+    Top = 139
+    Width = 34
     Height = 13
-    Caption = 'Telefone:'
+    Caption = 'Senha:'
   end
   object SpeedButton1: TSpeedButton
-    Left = 184
-    Top = 172
-    Width = 97
+    Left = 80
+    Top = 328
+    Width = 89
     Height = 46
     Caption = 'Salvar'
     Glyph.Data = {
@@ -144,53 +145,112 @@ object FormNAluno: TFormNAluno
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     OnClick = SpeedButton1Click
   end
-  object Edit1: TEdit
-    Left = 80
+  object DBEdit1: TDBEdit
+    Left = 24
     Top = 40
-    Width = 121
+    Width = 177
     Height = 21
+    DataField = 'nome'
+    DataSource = DataSource1
     TabOrder = 0
   end
-  object Edit2: TEdit
-    Left = 80
-    Top = 80
-    Width = 121
+  object DBEdit2: TDBEdit
+    Left = 24
+    Top = 96
+    Width = 177
     Height = 21
+    DataField = 'username'
+    DataSource = DataSource1
     TabOrder = 1
   end
-  object RadioGroup1: TRadioGroup
-    Left = 247
-    Top = 35
-    Width = 185
-    Height = 105
-    Caption = 'Turno'
-    Items.Strings = (
-      'Manh'#227
-      'Tarde'
-      'Noite')
+  object DBEdit3: TDBEdit
+    Left = 24
+    Top = 158
+    Width = 177
+    Height = 21
+    DataField = 'senha'
+    DataSource = DataSource1
     TabOrder = 2
   end
-  object Edit3: TEdit
-    Left = 80
-    Top = 124
-    Width = 121
-    Height = 21
+  object DBRadioGroup1: TDBRadioGroup
+    Left = 24
+    Top = 200
+    Width = 185
+    Height = 105
+    Caption = 'Cargo'
+    DataField = 'cargo'
+    DataSource = DataSource1
+    Items.Strings = (
+      'Bibliotec'#225'rio (a)'
+      'Coordena'#231#227'o')
     TabOrder = 3
-  end
-  object FDQuery1: TFDQuery
-    Active = True
-    Connection = FDConnection1
-    SQL.Strings = (
-      'select * from alunos;')
-    Left = 360
-    Top = 160
+    Values.Strings = (
+      '1'
+      '2')
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
       'LockingMode=Normal'
       'ConnectionDef=Biblioteca_SQLite')
     Connected = True
-    Left = 424
-    Top = 168
+    Left = 224
+    Top = 264
+  end
+  object FDTable1: TFDTable
+    Active = True
+    IndexFieldNames = 'id'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'usuarios'
+    TableName = 'usuarios'
+    Left = 224
+    Top = 216
+    object FDTable1id: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object FDTable1nome: TWideMemoField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Required = True
+      OnGetText = FDTable1nomeGetText
+      BlobType = ftWideMemo
+    end
+    object FDTable1username: TWideMemoField
+      FieldName = 'username'
+      Origin = 'username'
+      Required = True
+      OnGetText = FDTable1usernameGetText
+      BlobType = ftWideMemo
+    end
+    object FDTable1senha: TWideMemoField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Required = True
+      OnGetText = FDTable1senhaGetText
+      BlobType = ftWideMemo
+    end
+    object FDTable1cargo: TWideMemoField
+      FieldName = 'cargo'
+      Origin = 'cargo'
+      Required = True
+      BlobType = ftWideMemo
+    end
+    object FDTable1data_reg: TWideMemoField
+      FieldName = 'data_reg'
+      Origin = 'data_reg'
+      BlobType = ftWideMemo
+    end
+    object FDTable1data_ua: TWideMemoField
+      FieldName = 'data_ua'
+      Origin = 'data_ua'
+      BlobType = ftWideMemo
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = FDTable1
+    Left = 224
+    Top = 160
   end
 end

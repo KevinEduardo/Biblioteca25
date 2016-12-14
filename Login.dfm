@@ -14,6 +14,7 @@ object Form1: TForm1
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnActivate = FormActivate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -45,6 +46,7 @@ object Form1: TForm1
     Width = 121
     Height = 21
     TabOrder = 1
+    OnKeyPress = Edit1KeyPress
   end
   object Edit2: TEdit
     Left = 114
@@ -53,6 +55,7 @@ object Form1: TForm1
     Height = 21
     PasswordChar = '*'
     TabOrder = 2
+    OnKeyPress = Edit2KeyPress
   end
   object FDQuery1: TFDQuery
     Active = True

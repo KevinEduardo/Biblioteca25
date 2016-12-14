@@ -160,6 +160,7 @@ object Form2: TForm2
       Width = 81
       Height = 49
       Caption = 'Invent'#225'rio'
+      OnClick = SpeedButton4Click
     end
     object SpeedButton5: TSpeedButton
       Left = 471
@@ -167,6 +168,7 @@ object Form2: TForm2
       Width = 81
       Height = 49
       Caption = 'Alunos'
+      OnClick = SpeedButton5Click
     end
     object SpeedButton6: TSpeedButton
       Left = 558

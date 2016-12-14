@@ -159,6 +159,7 @@ FDQuery1.FieldByName('data').AsString := DateToStr(Now);
 FDQuery1.FieldByName('datadev').AsString := DateToStr(DateTimePicker1.Date);
 FDQuery1.Post;
 Mensagem('Registrado com sucessso!');
+Close;
 end;
 
 end;
